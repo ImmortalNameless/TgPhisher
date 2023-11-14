@@ -1,6 +1,4 @@
 import os
-from betterconf import Config, field
-from betterconf.config import AbstractProvider
 import telebot
 
 import  json
