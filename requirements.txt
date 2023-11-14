@@ -1,0 +1,4 @@
+PyTelegramBotApi
+colorama
+requests
+sqlite3
