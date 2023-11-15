@@ -14,36 +14,31 @@ yellow = Fore.YELLOW
 reset = Style.RESET_ALL
 bold = Style.BRIGHT
 
-def create_sv(title, token, admin):
+def open_proj(proj, title, token, admin):
     try:
     # Попытка запуска через "python"
-        subprocess.run(["python", 'sv.py', token, admin, title])
+        proc = subprocess.run(["python", f'{proj}.py', token, admin, title], 
+                              stdout=subprocess.PIPE, 
+                              stderr=subprocess.PIPE, 
+                              encoding="utf-8")
+        if reply.returncode == 0:
+            err = f"Скрипт завершил свою работу\n    Вывод: {proc.stdout}"
+        else:
+            err = f"При запуске {proj}.py возникла ошибка {proc.stderr}"
     except Exception:
         try:
-        # Попытка запуска через "python3"
-            subprocess.run(["python3", 'sv.py', token, admin, title])
-        except Exception:
-            print("     Обе попытки запустить скрипт не удалось.")
-def create_eyeofgod(title, token, admin):
-    try:
-    # Попытка запуска через "python"
-        subprocess.run(["python", 'eog.py', token, admin, title])
-    except Exception:
-        try:
-        # Попытка запуска через "python3"
-            subprocess.run(["python3", 'eog.py', token, admin, title])
-        except Exception:
-            print("     Обе попытки запустить скрипт не удалось.")
-def create_anonchat(title, token, admin):
-    try:
-    # Попытка запуска через "python"
-        subprocess.run(["python", 'ac.py', token, admin, title])
-    except Exception:
-        try:
-        # Попытка запуска через "python3"
-            subprocess.run(["python3", 'ac.py', token, admin, title])
-        except Exception:
-            print("     Обе попытки запустить скрипт не удалось.")
+            proc = subprocess.run(["python", f'{proj}.py', token, admin, title], 
+                              stdout=subprocess.PIPE, 
+                              stderr=subprocess.PIPE, 
+                              encoding="utf-8")
+            if reply.returncode == 0:
+                err = f"Скрипт завершил свою работу\n    Вывод: {proc.stdout}"
+            else:
+                err = f"При запуске {proj}.py возникла ошибка {proc.stderr}"
+    
+            print(f"     Обе попытки запустить {proj}.py не удались.")
+    return err
+            
 import os
 
 def display_banner():
@@ -76,13 +71,13 @@ def main():
 
         if choice == "1":
             conf = Config("eog")
-            create_eyeofgod(conf.title, conf.token, conf.admin)
+            open_proj("eog", conf.title, conf.token, conf.admin)
         elif choice == "2":
             conf = Config("ac")
-            create_anonchat(conf.title, conf.token, conf.admin)
+            open_proj("eog", conf.title, conf.token, conf.admin)
         elif choice == "3":
             conf = Config("sv")
-            create_sv(conf.title, conf.token, conf.admin)
+            open_proj("eog", conf.title, conf.token, conf.admin)
         elif choice == "0":
             print("Выход из программы...")
             break
