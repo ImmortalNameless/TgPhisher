@@ -1,4 +1,3 @@
-PyTelegramBotApi
+telebot
 colorama
 requests
-sqlite3

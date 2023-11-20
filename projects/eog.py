@@ -10,6 +10,8 @@ import sys
 
 init()
 
+name = "Eye of GOD"
+
 # Определение цветов
 red = Fore.RED
 cyan = Fore.CYAN
